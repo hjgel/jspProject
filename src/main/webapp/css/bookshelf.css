@@ -85,3 +85,15 @@ body {
     color: #4caf50;
     margin-top: 5px;
 }
+
+.image-container {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100vh; /* 컨테이너 높이를 화면 높이로 설정 */
+}
+
+.image-container img {
+    max-width: 90%;
+    height: auto; /* 비율 유지 */
+}

@@ -18,8 +18,8 @@
     <br><br>
     <div class="container">
     <h2 class="panel-title">
-            <img src="images/독서현황.png" alt="icon" class="panel-icon" width="170px" height="auto">
-        </h2>
+    	<img src="images/now.png" alt="icon" class="panel-icon" width="170px" height="auto">
+    </h2>
     <!-- 좌측: 내 독서 현황 -->
     <div class="left-panel">
         

@@ -69,10 +69,10 @@
        
         <ul>
             <li><a href="bookshelf.do">서재</a></li>
-            <li><a href="/search.jsp">책 찾기</a></li>
-            <li><a href="/notice.jsp">공지사항</a></li>
+            <li><a href="book_search.do">책 찾기</a></li>
+            <li><a href="notice.do">공지사항</a></li>
         </ul>
-        <div class="user-icon">👤</div>
+        <div class="user-icon"><a href="login.do">👤</a></div>
     </nav>
 </body>
 </html>
