@@ -52,7 +52,27 @@
             font-size: 20px;
             color: #333;
             cursor: pointer;
+            font-weight: bold;   
         }
+        .user-icon a {
+		    font-family: 'Arial', sans-serif; /* 기본 폰트 설정 */
+		    font-size: 16px; /* 글자 크기 */
+		    text-decoration: none; /* 링크 밑줄 제거 */
+		    color: #007bff; /* 링크 색상 (블루톤) */
+		    font-weight: bold; /* 텍스트 굵기 */
+		}
+
+		.user-icon a:hover {
+		    color: #0056b3; /* 링크 호버 시 색상 */
+		}
+		.welcome-text {
+		    font-family: 'Arial', sans-serif; /* 기본 폰트 설정 */
+		    font-weight: bold; /* 텍스트 굵기 */
+		    font-size: 16px; /* 글자 크기 */
+		    color: #333; /* 일반 텍스트 색상 */
+		    vertical-align: middle; /* 텍스트와 아이콘 정렬 */
+		}
+		
 
         nav img {
             width: 130px; /* 이미지 너비 조정 */
@@ -63,16 +83,28 @@
 </head>
 <body>
     <nav>
-    	<a href="main.jsp">
+        <a href="main.do">
     		<img alt="logo" src="images/icon.png">	
 		</a>
-       
         <ul>
             <li><a href="bookshelf.do">서재</a></li>
-            <li><a href="book_search.do">책 찾기</a></li>
+            <li><a href="searchBook.do">책 찾기</a></li>
             <li><a href="notice.do">공지사항</a></li>
         </ul>
-        <div class="user-icon"><a href="login.do">👤</a></div>
+        <%
+		    session = request.getSession(false); // 세션 가져오기 (있을 경우만)
+		    String username = null;
+		    if (session != null) {
+		        username = (String) session.getAttribute("username");
+		    }
+		%>
+        
+        <% if (username != null) { %>
+            <div class="user-icon"><a href="logout.do">로그아웃</a></div>
+            <span class="welcome-text">&nbsp;&nbsp; 환영합니다, 👤 <%= username %>님!</span>
+        <% } else { %>
+            <div class="user-icon"><a href="login.do">👤 로그인</a></div>
+        <% } %>
     </nav>
 </body>
 </html>
