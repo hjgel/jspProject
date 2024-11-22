@@ -24,7 +24,7 @@
     <img alt="" src="images/libbook.png" width="90%" height="auto"> 
     
     
-    <%-- <!-- 책 카드 목록 -->
+    <!-- 책 카드 목록 -->
     <div class="book-grid">
         책 목록 반복 출력
         <c:forEach var="book" items="${bookList}">
@@ -38,6 +38,6 @@
                 <p class="progress-text"><strong><c:out value="${book.currentPage}"/></strong> / <c:out value="${book.totalPage}"/></p>
             </div>
         </c:forEach>
-    </div> --%>
+    </div> 
 </body>
 </html>

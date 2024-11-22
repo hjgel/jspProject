@@ -102,26 +102,29 @@ img[alt="아이콘"] {
     
     <div class="container">
         <div class="jumbotron">
-       		<% 
-           		String error = (String) request.getAttribute("error");
-            	if (error != null) { 
+        	<% 
+           	 	String error = (String) request.getAttribute("error");
+           		 if (error != null) { 
         	%>
             <div class="alert alert-danger" role="alert">
             <%= error %>
             </div>
-        	<% } %>
-            <form method="post" action="loginAction.do">
-                <h3><img src="images/login.png" alt="아이콘2" width="120px" height="auto"></h3>
+       		<% } %>
+            <form method="post" action="joinAction.do">
+                <h3><img src="images/signup.png" alt="아이콘2" width="120px" height="auto"></h3>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="아이디" name="username" maxlength="20">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="비밀번호" name="password" maxlength="20">
                 </div>
-                <button type="submit" class="btn btn-primary">로그인</button>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="이름" name="name" maxlength="20">
+                </div>
+                
+                <button type="submit" class="btn btn-primary">회원가입</button>
             </form>
         </div>
     </div>
-    <a href="signup.do">회원가입</a>
 </body>
 </html>
