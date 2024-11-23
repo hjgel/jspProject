@@ -21,7 +21,7 @@ public class LoginActionHandler implements CommandHandler{
         // 2. 입력 데이터 검증
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             request.setAttribute("error", "아이디와 비밀번호를 모두 입력해야 합니다.");
-            return "/WEB-INF/views/login.jsp"; // 다시 로그인 폼으로 이동
+            return "login"; // 다시 로그인 폼으로 이동
         }
 
         // 3. UserDAO 호출하여 로그인 처리
