@@ -38,11 +38,11 @@ public class BookDAO {
         try {
             if (query == null || query.trim().isEmpty()) {
                 // 검색어가 없을 경우: 모든 책 출력
-                sql = "SELECT title, author, publisher, publish_predate, subject, book_introduction, title_url FROM book";
+                sql = "SELECT bookId, title, author, publisher, publish_predate, subject, book_introduction, title_url FROM book";
                 pstmt = conn.prepareStatement(sql);
             } else {
                 // 검색어가 있을 경우: 조건에 맞는 책 출력
-                sql = "SELECT title, author, publisher, publish_predate, subject, book_introduction, title_url FROM book WHERE title LIKE ?";
+                sql = "SELECT bookId, title, author, publisher, publish_predate, subject, book_introduction, title_url FROM book WHERE title LIKE ?";
                 pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, "%" + query + "%");
             }
@@ -51,6 +51,7 @@ public class BookDAO {
 
             while (rs.next()) {
                 Book book = new Book();
+                book.setBookId(rs.getInt("bookId"));
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
                 book.setPublisher(rs.getString("publisher"));
@@ -64,5 +65,29 @@ public class BookDAO {
             e.printStackTrace();
         }
         return books;
+    }
+    
+    public Book getBookById(int bookId) {
+        String sql = "SELECT bookId, title, author, publisher, publish_predate, subject, book_introduction, title_url FROM book WHERE bookId = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, bookId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Book book = new Book();
+                    book.setBookId(rs.getInt("bookId"));
+                    book.setTitle(rs.getString("title"));
+                    book.setAuthor(rs.getString("author"));
+                    book.setPublisher(rs.getString("publisher"));
+                    book.setPublishDate(rs.getString("publish_predate"));
+                    book.setSubject(rs.getString("subject"));
+                    book.setIntroduction(rs.getString("book_introduction"));
+                    book.setTitleUrl(rs.getString("title_url"));
+                    return book;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

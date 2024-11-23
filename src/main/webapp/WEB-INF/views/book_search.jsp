@@ -132,21 +132,25 @@ body, html {
 
     <div class="book-list">
 	    <c:forEach var="book" items="${bookList}">
-	        <div class="book-item" style="display: flex; align-items: center; margin-bottom: 15px;">
-	            <img src="<c:out value='${book.titleUrl}'/>" alt="<c:out value='${book.title}'/>" 
-	                 style="width: 150px; height: auto; margin-right: 15px;">
-	            <div class="book-info">
-	                <h2 style="margin: 0;"><c:out value="${book.title}"/></h2>
-	                <p style="margin: 5px 0; color: #555;">
-	                    <c:out value="${book.author}"/> · 
-	                    <c:out value="${book.publisher}"/> · 
-	                    <c:out value="${book.publishDate}"/>년 출판
-	                </p>
-	                <br><br>
-	                <p class="book-introduction"><c:out value="${book.introduction }"/></p>
-	            </div>
-	        </div>
+	    	<a href="book_detail.do?bookId=<c:out value='${book.bookId}'/>" style="text-decoration: none; color: inherit;">
+		        <div class="book-item" style="display: flex; align-items: center; margin-bottom: 15px;">
+		        	
+			            <img src="<c:out value='${book.titleUrl}'/>" alt="<c:out value='${book.title}'/>" 
+			                 style="width: 150px; height: auto; margin-right: 15px;">
+			            <div class="book-info">
+			                <h2 style="margin: 0;"><c:out value="${book.title}"/></h2>
+			                <p style="margin: 5px 0; color: #555;">
+			                    <c:out value="${book.author}"/> · 
+			                    <c:out value="${book.publisher}"/> · 
+			                    <c:out value="${book.publishDate}"/>년 출판
+			                </p>
+			                <br><br>
+			                <p class="book-introduction"><c:out value="${book.introduction }"/></p>
+			            </div>
+		        </div>
+	        </a>
 	    </c:forEach>
+	
 	</div>	
 </body>
 </html>
