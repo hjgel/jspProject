@@ -159,6 +159,18 @@
 	    border-radius: 5px;
 	}
 </style>
+
+<script>
+    // 에러 메시지가 있을 경우 경고창 표시 후 리디렉션
+    function showErrorAndRedirect(errorMsg, redirectUrl) {
+        if (errorMsg) {
+            alert(errorMsg);
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 1000); // 1초 후 리디렉션
+        }
+    }
+</script>
 </head>
 <body>
     <%@ include file="navbar.jsp" %>
@@ -176,14 +188,15 @@
     <div class="book-detail">
     
         <% 
-           		String error = (String) request.getAttribute("error");
-            	if (error != null) { 
-        	%>
-            <div class="alert alert-danger" role="alert">
-            <%= error %>
-            </div>
-    	<% } %>
-        <!-- 책 이미지 -->
+		    String error = (String) request.getAttribute("error");
+		    if (error != null) { 
+		%>
+		    <script>
+		        alert("<%= error %>"); // 경고창에 에러 메시지 표시
+		        window.location.href = "searchBook.do";
+		    </script>
+		<% } %>
+		        <!-- 책 이미지 -->
         <img src="<c:out value='${book.titleUrl}'/>" alt="<c:out value='${book.title}'/>">
         
         <!-- 책 정보 -->

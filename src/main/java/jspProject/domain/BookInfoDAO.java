@@ -71,5 +71,37 @@ public class BookInfoDAO {
         }
         return null;
     }
+    
+    
+    // 책 정보를 저장하는 메서드
+    public boolean saveBookInfo(int userId, int bookId, int pages) {
+        String sql = "INSERT INTO Book_Info (user_id, book_id, pages) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            pstmt.setInt(3, pages);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
+    // 회원이 이미 서재에 등록한 책이면 등록 불가 반환하는 메서드
+    public boolean isBookAlreadyRegistered(int userId, int bookId) {
+        String sql = "SELECT COUNT(*) FROM Book_Info WHERE user_id = ? AND book_id = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, bookId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0; // 해당 데이터가 존재하면 true 반환
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // 예외 발생 시 false 반환
+    }
 }
 
