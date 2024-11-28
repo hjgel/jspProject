@@ -121,7 +121,7 @@ public class UserDAO {
 	
 	
 	public BookInfo getUserBookInfo(int user_id) {
-		String sql = "SELECT bi.book_info_id, bi.pages, bi.diary_id, b.title, b.author, b.title_url " + 
+		String sql = "SELECT bi.book_info_id, bi.pages, b.title, b.author, b.title_url " + 
 					 "FROM user u " + "JOIN book_info bi ON u.book_info_id = bi.book_info_id " + 
 				     "JOIN book b ON bi.book_id = b.book_id " + "WHERE u.user_id = ?";
 		
@@ -133,10 +133,9 @@ public class UserDAO {
 				BookInfo bookInfo = new BookInfo();
 				bookInfo.setBook_info_id(rs.getInt("book_info_id"));
 				bookInfo.setPages(rs.getInt("pages"));
-				bookInfo.setDiary_id(rs.getInt("diary_id"));
 				bookInfo.setTitle(rs.getString("title"));
 				bookInfo.setAuthor(rs.getString("author"));
-				bookInfo.setTitleUrl(rs.getString("title_url"));
+				bookInfo.setTitle_url(rs.getString("title_url"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

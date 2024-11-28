@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 서재</title>
-    <link rel="stylesheet" type="text/css" href="css/bookshelf.css">
+    <link rel="stylesheet" type="text/css" href="css/book_shelf.css">
 </head>
 <body>
 	<%@ include file="navbar.jsp" %>
@@ -18,26 +18,32 @@
     </div>
     
     <br>
-    <img src="images/내서재.png" alt="icon" class="panel-icon" width="150px" height="auto">
+    <img src="images/bookshelf.png" alt="icon" class="panel-icon" width="150px" height="auto">
     
     <br><br>
-    <img alt="" src="images/libbook.png" width="90%" height="auto"> 
+    <!-- <img alt="" src="images/libbook.png" width="90%" height="auto"> --> 
     
     
     <!-- 책 카드 목록 -->
     <div class="book-grid">
-        책 목록 반복 출력
-        <c:forEach var="book" items="${bookList}">
-            <div class="book-card">
-                <img src="images/<c:out value='${book.image}'/>" alt="<c:out value='${book.title}'/>">
-                <h3><c:out value="${book.title}"/></h3>
-                <p><c:out value="${book.author}"/></p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: <c:out value='${book.progressPercent}'/>%;"></div>
-                </div>
-                <p class="progress-text"><strong><c:out value="${book.currentPage}"/></strong> / <c:out value="${book.totalPage}"/></p>
-            </div>
-        </c:forEach>
-    </div> 
+    <c:forEach var="book" items="${bookList}">
+    	<a href="shelf_detail.do?book_info_id=${book.book_info_id}" class="book-card-link">
+	        <div class="book-card">
+	            <!-- 책 이미지 -->
+	            <img src="<c:out value='${book.titleUrl}'/>" alt="<c:out value='${book.title}'/>">
+	            <!-- 책 제목 -->
+	            <h3><c:out value="${book.title}"/></h3>
+	            <!-- 저자 -->
+	            <p><c:out value="${book.author}"/></p>
+	            <!-- 페이지 수 -->
+	            <p class="progress-text">
+	                <strong><c:out value="${book.pages}"/></strong> 페이지
+	            </p>
+	        </div>
+        </a>
+    </c:forEach>
+    
+
+</div>
 </body>
 </html>

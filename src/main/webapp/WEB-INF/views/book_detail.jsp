@@ -188,12 +188,18 @@
     <div class="book-detail">
     
         <% 
+        	String message = (String) request.getAttribute("message");
 		    String error = (String) request.getAttribute("error");
 		    if (error != null) { 
 		%>
 		    <script>
 		        alert("<%= error %>"); // 경고창에 에러 메시지 표시
 		        window.location.href = "searchBook.do";
+		    </script>
+		<% } if (message != null) {   %>
+			<script>
+		        alert("책이 등록되었습니다!"); // 경고창에 에러 메시지 표시
+		        window.location.href = "bookshelf.do";
 		    </script>
 		<% } %>
 		        <!-- 책 이미지 -->

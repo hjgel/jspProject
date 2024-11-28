@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,9 +25,9 @@
     <div class="left-panel">
         
         <div class="panel-content">
-            <p class="name"><strong>👤 이름:</strong> 이현준</p> <br>
-            <p><strong>   &nbsp 읽은 책 수:</strong> 30권</p>
-            <p><strong>   &nbsp 독서일기 작성 수:</strong> 80건</p>
+            <p class="name"><strong>👤 이름:</strong> <%= username %></p> <br>
+            <p><strong>   &nbsp 읽은 책 수:</strong> ${bookCount}권</p>
+            <p><strong>   &nbsp 독서일기 작성 수:</strong> ${diaryCount}건</p>
         </div>
     </div>
 
@@ -34,19 +35,10 @@
     <div class="right-panel">
         <h2>내가 읽은 책</h2>
         <div class="book-grid">
-            <div class="book" style="background-image: url('http://www.nl.go.kr/seoji/fu/ecip/dbfiles/CIP_FILES_TBL/6303968_3.jpg');"></div>
-            <div class="book" style="background-image: url('images/book2.jpg');"></div>
-            <div class="book" style="background-image: url('images/book3.jpg');"></div>
-            <div class="book" style="background-image: url('images/book4.jpg');"></div>
-            <div class="book" style="background-image: url('images/book5.jpg');"></div>
-            <div class="book" style="background-image: url('images/book6.jpg');"></div>
-            <div class="book" style="background-image: url('images/book1.jpg');"></div>
-            <div class="book" style="background-image: url('images/book2.jpg');"></div>
-            <div class="book" style="background-image: url('images/book3.jpg');"></div>
-            <div class="book" style="background-image: url('images/book4.jpg');"></div>
-            <div class="book" style="background-image: url('images/book5.jpg');"></div>
-            <div class="book" style="background-image: url('images/book6.jpg');"></div>
-        </div>
+		    <c:forEach var="book" items="${bookList}">
+		        <a href="shelf_detail.do?book_info_id=${book.book_info_id}" class="book-card-link"><div class="book" style="background-image: url('<c:out value="${book.titleUrl}"/>');"></div></a>
+		    </c:forEach>
+		</div>
     </div>
 </div>
     
