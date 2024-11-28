@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookInfoDAO {
 	private Connection conn;
@@ -47,9 +49,9 @@ public class BookInfoDAO {
 
     // 2. 특정 book_info 조회
     public BookInfo getBookInfo(int book_info_id) {
-        String sql = "SELECT bi.book_info_id, bi.pages, bi.diary_id, b.title, b.author, b.title_url " +
+        String sql = "SELECT bi.book_info_id, bi.pages, b.title, b.author, b.title_url " +
                      "FROM book_info bi " +
-                     "JOIN book b ON bi.book_id = b.book_id " +
+                     "JOIN book b ON bi.book_id = b.bookId " +
                      "WHERE bi.book_info_id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -60,10 +62,9 @@ public class BookInfoDAO {
                 BookInfo bookInfo = new BookInfo();
                 bookInfo.setBook_info_id(rs.getInt("book_info_id"));
                 bookInfo.setPages(rs.getInt("pages"));
-                bookInfo.setDiary_id(rs.getInt("diary_id"));
                 bookInfo.setTitle(rs.getString("title"));
                 bookInfo.setAuthor(rs.getString("author"));
-                bookInfo.setTitleUrl(rs.getString("title_url"));
+                bookInfo.setTitle_url(rs.getString("title_url"));
                 return bookInfo;
             }
         } catch (SQLException e) {
@@ -103,5 +104,73 @@ public class BookInfoDAO {
         }
         return false; // 예외 발생 시 false 반환
     }
+    
+ // 특정 사용자에 대한 책 목록 가져오기
+    public List<BookDTO> getBooksByUserId(int userId) {
+        List<BookDTO> bookList = new ArrayList<>();
+        String sql = "SELECT bi.book_info_id, b.title_url, b.title, b.author, bi.pages "
+                   + "FROM Book b "
+                   + "JOIN Book_Info bi ON b.bookId = bi.book_id "
+                   + "WHERE bi.user_id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    BookDTO bookDTO = new BookDTO();
+                    bookDTO.setBook_info_id(rs.getInt("book_info_id"));
+                    bookDTO.setTitleUrl(rs.getString("title_url"));
+                    bookDTO.setTitle(rs.getString("title"));
+                    bookDTO.setAuthor(rs.getString("author"));
+                    bookDTO.setPages(rs.getInt("pages"));
+                    bookList.add(bookDTO);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bookList;
+    }
+    
+    public int countBooksByUserId(int userId) {
+        String sql = "SELECT COUNT(*) AS bookCount FROM book_info WHERE user_id = ?";
+        int count = 0;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt("bookCount");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+    
+    public int countDiariesByUserId(int userId) {
+        String sql = "SELECT COUNT(d.diary_id) AS diaryCount " +
+                     "FROM book_info b " +
+                     "LEFT JOIN diary d ON b.book_info_id = d.book_info_id " +
+                     "WHERE b.user_id = ?";
+        int count = 0;
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt("diaryCount");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    
 }
 

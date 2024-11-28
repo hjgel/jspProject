@@ -1,0 +1,99 @@
+/* 책 상세정보 레이아웃 */
+.book-detail {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    max-width: 1000px;
+    margin: auto;
+    min-height: 400px;
+}
+
+.book-detail img {
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.book-info p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.book-info strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 독후감 섹션 */
+.diary-section {
+    margin-top: 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.diary-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.diary-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.diary-item small {
+    display: block;
+    margin-top: 10px;
+    color: #888;
+}
+
+.diary-section form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.diary-section form button {
+    background-color: #ff6700;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.diary-section form button:hover {
+    background-color: #e05e00;
+}
+
+.diary-item p {
+    white-space: pre-line; /* 줄바꿈과 공백 유지 */
+}

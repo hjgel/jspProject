@@ -73,6 +73,8 @@ public class ControllerServlet extends HttpServlet {
     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   request.setCharacterEncoding("UTF-8"); // 요청 인코딩 설정
+	   response.setCharacterEncoding("UTF-8"); // 응답 인코딩 설정
 	   try {
 		   process(request, response);
 	   } catch (Exception e) {
@@ -85,6 +87,8 @@ public class ControllerServlet extends HttpServlet {
     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
     */
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   request.setCharacterEncoding("UTF-8"); // 요청 인코딩 설정
+	   response.setCharacterEncoding("UTF-8"); // 응답 인코딩 설정
       try {
     	  process(request, response);
       } catch (Exception e) {
