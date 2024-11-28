@@ -1,0 +1,64 @@
+/* Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* 배너 스타일 */
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 작성 컨테이너 */
+.write-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.write-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.write-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.write-container input[type="text"],
+.write-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.write-container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6700;
+	color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.write-container button:hover {
+    background-color: #0056b3;
+}

@@ -20,8 +20,16 @@
     </div>
     <!-- 공지사항 제목 -->
     <br>
-    <img src="images/notice.png" alt="아이콘" width="150px" height="auto" >
-   
+    
+    <div class="d-flex align-items-center justify-content-between mt-3">
+	    <!-- 공지사항 아이콘 -->
+	    <img src="images/notice.png" alt="아이콘" width="150px" height="auto">
+	    <!-- 공지사항 작성 버튼 -->
+	    <a href="notice_write.do">
+	        <img src="images/write.png" alt="아이콘" width="150px" height="auto" style="margin-right: 5px;"> 
+	    </a>
+	</div>
+	   
 
     <!-- 공지사항 테이블 -->
     <div class="notice-table-container">
@@ -30,7 +38,6 @@
                 <tr class="text-center">
                     <th>번호</th>
 			     	<th style="width:50%">제목</th>
-			     	<th>글쓴이</th>
 			    	<th>작성일시</th>
                 </tr>
             </thead>
@@ -38,10 +45,16 @@
                 <%-- 공지사항 데이터 반복 출력 --%>
                 <c:forEach var="notice" items="${noticeList}">
                     <tr>
-                        <td><c:out value="${notice.id}"/></td>
-                        <td><c:out value="${notice.title}"/></td>
-                        <td><c:out value="${notice.author}"/></td>
-                        <td><c:out value="${notice.date}"/></td>
+                   		
+                        <td style="text-align: center;"><c:out value="${notice.notice_id}"/></td>
+                        <td style="text-align: center;">
+			                <!-- 제목을 클릭하면 notice_detail.do로 이동 -->
+			                <a href="notice_detail.do?notice_id=${notice.notice_id}" class="notice-link">
+			                    <c:out value="${notice.title}"/>
+			                </a>
+			            </td>
+                        
+                        <td style="text-align: center;"><c:out value="${notice.created_at}"/></td>
                     </tr>
                 </c:forEach>
             </tbody>
