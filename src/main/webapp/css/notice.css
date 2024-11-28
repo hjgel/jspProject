@@ -14,13 +14,6 @@ body {
 }
 
 
-
-.notice-header img {
-    width: 30px;
-    height: auto;
-    margin-right: 10px;
-}
-
 /* 공지사항 테이블 컨테이너 */
 .notice-table-container {
     padding: 20px;

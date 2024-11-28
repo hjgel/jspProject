@@ -124,7 +124,7 @@ body, html {
 	
     <!-- 검색창 -->
     <div class="search-bar">
-        <form action="searchBooks" method="get">
+        <form action="searchBook.do" method="get">
             <input type="text" name="query" placeholder="책 검색하기">
             <button type="submit"><i class="fa fa-search"></i></button>
         </form>
