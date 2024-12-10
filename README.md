@@ -3,7 +3,7 @@
 
 # 프로젝트 소개 
 
-![image](https://github.com/user-attachments/assets/0e3110a6-88ec-45a9-bc3d-7a03888c7b5a)
+<img width="1268" alt="image" src="https://github.com/user-attachments/assets/b82a9a24-b356-4e34-b5f7-0c40de9d100b">
 
 독서 정리 도우미. 독정이
 
