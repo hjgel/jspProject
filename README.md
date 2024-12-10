@@ -39,6 +39,7 @@
 
 
 <br>
+<hr>
 
 ### 포트폴리오
 <a href="https://github.com/user-attachments/files/18078723/202244111_.pptx">설명 PPT</a>
